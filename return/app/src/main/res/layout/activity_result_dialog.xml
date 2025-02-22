@@ -1,0 +1,58 @@
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.example.reversi.ResultDialog">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lavender"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_centerInParent="true" >
+
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Results"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <Button
+        android:id="@+id/startAgainButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Start Again"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/white"
+        android:layout_margin="20dp"
+        android:textColor="@color/lavender"
+        app:cornerRadius="20dp"
+        android:onClick="startAgainButtonClick"/>
+    <Button
+        android:id="@+id/Out"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Return Menu"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/white"
+        android:layout_margin="20dp"
+        android:textColor="@color/lavender"
+        app:cornerRadius="20dp"
+        android:onClick="startAgainButtonClick"/>
+</LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">reversi</string>
+    <string name="default_web_client_id">your_web_client_id</string>
+
+    <!-- Các mức độ khó cho Spinner -->
+    <string-array name="difficulty_levels">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <!-- Các chuỗi khác cần thiết -->
+    <string name="enter_name_hint" translatable="false">Nhập tên của bạn</string>
+    <string name="start_game_button_text" translatable="false">Start Game</string>
+    <string name="select_difficulty_text" translatable="false">Select Difficulty</string>
+    <string name="error_enter_name" translatable="false">Please enter your name</string>
+</resources>
