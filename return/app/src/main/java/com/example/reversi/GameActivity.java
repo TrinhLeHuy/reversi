@@ -158,6 +158,10 @@ public class GameActivity extends AppCompatActivity {
                     roleText.setText("Bạn là Player " + playerId + (playerId == 1 ? " (Đen)" : " (Trắng)"));
                 }
                 break;
+            case "EXIT_TO_MENU":
+                Toast.makeText(this, "Đối thủ đã từ chối chơi lại. Trở về menu...", Toast.LENGTH_SHORT).show();
+                returnToMenu(); // Hàm xử lý quay về menu chính
+                break;
             default:
                 break;
         }
@@ -311,6 +315,12 @@ public class GameActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
+    private void returnToMenu() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        finish(); // Đóng màn hình hiện tại
+    }
+
 
     @Override
     protected void onDestroy() {
