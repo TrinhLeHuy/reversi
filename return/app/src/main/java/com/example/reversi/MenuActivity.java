@@ -21,7 +21,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private void initViews() {
         startGameButtonWithBot = findViewById(R.id.startGameButtonxBot);
-        startGameButtonOnline = findViewById(R.id.startGameButtOnline);
+        startGameButtonOnline = findViewById(R.id.startGameButOnline);
+
     }
 
     private void setupListeners() {

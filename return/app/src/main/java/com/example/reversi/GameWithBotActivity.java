@@ -62,7 +62,7 @@ public class GameWithBotActivity extends AppCompatActivity {
     private void setupGameBoard() {
         // Tính toán kích thước mỗi ô (chia cho 8 để sát nhau hơn)
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        int cellSize = screenWidth / 8;
+        int cellSize = screenWidth / BOARD_SIZE;
 
         // Thiết lập số cột, số hàng cho GridLayout
         gridLayout.setColumnCount(BOARD_SIZE);
@@ -247,7 +247,7 @@ public class GameWithBotActivity extends AppCompatActivity {
     }
 
     /**
-     * Xử lý lượt đi của Bot
+     * Xử lý lượt đi của Bot, bao gồm cả các chế độ: easy, medium, ai learn, hard
      */
     private void makeBotMove() {
         if (currentPlayer == PLAYER_TWO) {
@@ -259,6 +259,9 @@ public class GameWithBotActivity extends AppCompatActivity {
                     break;
                 case "medium":
                     bestMove = getMaxFlipsMove();
+                    break;
+                case "ai learn":
+                    bestMove = getReinforcementLearningMove();
                     break;
                 case "hard":
                 default:
@@ -345,7 +348,7 @@ public class GameWithBotActivity extends AppCompatActivity {
     }
 
     /**
-     * Bot - sử dụng Alpha-Beta (chế độ khó)
+     * Bot - sử dụng Alpha-Beta (chế độ hard)
      */
     private int[] alphaBeta(int depth, int alpha, int beta, boolean maximizingPlayer) {
         int[] bestMove = null;
@@ -447,6 +450,28 @@ public class GameWithBotActivity extends AppCompatActivity {
             }
         }
         return playerTwoScore - playerOneScore;
+    }
+
+    /**
+     * Phương thức AI Learn sử dụng Reinforcement Learning (placeholder)
+     * Ở đây ta mô phỏng bằng cách kết hợp chiến thuật lật nhiều quân nhất và Alpha-Beta.
+     */
+    private int[] getReinforcementLearningMove() {
+        // Giả sử ta lấy nước đi theo chiến thuật "lật nhiều quân nhất"
+        int[] maxFlipsMove = getMaxFlipsMove();
+        // Lấy nước đi theo chiến thuật Alpha-Beta với độ sâu 3
+        int[] alphaBetaMove = alphaBeta(3, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+
+        // Tính điểm cho mỗi nước đi (ở đây điểm được giả định là số quân lật được)
+        int flipsMax = (maxFlipsMove != null) ? countFlips(maxFlipsMove[0], maxFlipsMove[1]) : -1;
+        int flipsAlpha = (alphaBetaMove != null) ? countFlips(alphaBetaMove[0], alphaBetaMove[1]) : -1;
+
+        // Giả lập quá trình "học" bằng cách so sánh và chọn nước đi cho kết quả tốt nhất
+        if (flipsMax >= flipsAlpha) {
+            return maxFlipsMove;
+        } else {
+            return alphaBetaMove;
+        }
     }
 
     /**

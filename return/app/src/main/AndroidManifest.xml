@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Reversi"
         tools:targetApi="31">
+        <activity
+            android:name="com.example.reversi.AIvsAIActivity"
+            android:exported="false" />
         <!-- Màn hình chính khi khởi động -->
         <activity
             android:name="com.example.reversi.MenuActivity"

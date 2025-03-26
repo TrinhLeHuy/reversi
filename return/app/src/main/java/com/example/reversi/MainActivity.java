@@ -11,7 +11,7 @@ import com.example.myapplication.R;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String SERVER_IP = "192.168.31.54";
+    private static final String SERVER_IP = "100.94.102.55";
     private static final int SERVER_PORT = 5000;
 
     private EditText roomIdInput;
@@ -46,12 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     listenServerResponse();
                 } catch (IOException e) {
                     runOnUiThread(() -> statusText.setText("Mất kết nối, thử kết nối lại sau 3 giây..."));
-                    // Chờ 3 giây trước khi thử kết nối lại
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
+
                 }
             }
         });

@@ -13,7 +13,7 @@ tools:context="com.example.reversi.MenuActivity">
 
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="520dp"
+    android:layout_height="340dp"
     android:layout_margin="30dp"
     app:cardCornerRadius="30dp"
     app:cardElevation="20dp"
@@ -50,7 +50,7 @@ tools:context="com.example.reversi.MenuActivity">
             app:cornerRadius="20dp" />
 
         <Button
-            android:id="@+id/startGameButtOnline"
+            android:id="@+id/startGameButOnline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -58,28 +58,7 @@ tools:context="com.example.reversi.MenuActivity">
             android:text="Start Game Online"
             android:textColor="@color/lavender"
             android:textSize="18sp"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="---------------------"
-            android:textAlignment="center"
-            android:textColor="@color/lavender"
-            android:textSize="36sp"
             android:textStyle="bold" />
-        <Button
-            android:id="@+id/changePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:backgroundTint="@color/black"
-            android:text="Change Password"
-            android:textColor="@color/lavender"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:cornerRadius="20dp" />
-
 
 
     </LinearLayout>
