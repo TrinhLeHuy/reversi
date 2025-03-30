@@ -457,16 +457,16 @@ public class GameWithBotActivity extends AppCompatActivity {
      * Ở đây ta mô phỏng bằng cách kết hợp chiến thuật lật nhiều quân nhất và Alpha-Beta.
      */
     private int[] getReinforcementLearningMove() {
-        // Giả sử ta lấy nước đi theo chiến thuật "lật nhiều quân nhất"
+
         int[] maxFlipsMove = getMaxFlipsMove();
-        // Lấy nước đi theo chiến thuật Alpha-Beta với độ sâu 3
+
         int[] alphaBetaMove = alphaBeta(3, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
 
-        // Tính điểm cho mỗi nước đi (ở đây điểm được giả định là số quân lật được)
+        // Tính điểm cho mỗi nước đi
         int flipsMax = (maxFlipsMove != null) ? countFlips(maxFlipsMove[0], maxFlipsMove[1]) : -1;
         int flipsAlpha = (alphaBetaMove != null) ? countFlips(alphaBetaMove[0], alphaBetaMove[1]) : -1;
 
-        // Giả lập quá trình "học" bằng cách so sánh và chọn nước đi cho kết quả tốt nhất
+        // so sánh và chọn nước đi cho kết quả tốt nhất
         if (flipsMax >= flipsAlpha) {
             return maxFlipsMove;
         } else {

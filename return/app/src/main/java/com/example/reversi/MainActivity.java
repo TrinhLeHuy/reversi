@@ -11,8 +11,9 @@ import com.example.myapplication.R;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String SERVER_IP = "100.94.102.55";
+    private static final String SERVER_IP = "3.27.125.16";
     private static final int SERVER_PORT = 5000;
+
 
     private EditText roomIdInput;
     private Button createRoomButton, joinRoomButton, startGameButton, listRoomButton;

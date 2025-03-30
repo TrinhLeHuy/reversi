@@ -27,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private PrintWriter writer;
     private Thread readingThread;
     private volatile boolean stopReading = false;
+    private boolean inGame = false;
 
     // Thêm mảng hằng số các hướng lật cờ (8 hướng)
     private static final int[][] DIRECTIONS = {
@@ -182,7 +183,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     /**
-     * Cập nhật giao diện bàn cờ
+     * Cập nhật giao diện bàn cờS
      * Sau khi vẽ quân cờ xong, nếu là lượt của người chơi (playerId == currentTurn)
      * thì hiển thị các ô hợp lệ.
      */
@@ -290,9 +291,33 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void startGameAgain() {
-        sendCommand("PLAY_AGAIN");
-        Toast.makeText(this, "Yêu cầu chơi lại đã được gửi", Toast.LENGTH_SHORT).show();
+        // Kiểm tra cờ inGame
+        if (!inGame) {
+            Toast.makeText(this,
+                    "Không thể gửi PLAY_AGAIN. Phòng đã đóng hoặc đối thủ thoát!",
+                    Toast.LENGTH_SHORT).show();
+
+            // Trở về menu (hoặc đóng Activity)
+            returnToMenu();
+            return;
+        }
+
+        try {
+            // Gửi lệnh PLAY_AGAIN
+            sendCommand("PLAY_AGAIN");
+            Toast.makeText(this, "Yêu cầu chơi lại đã được gửi", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            // Nếu có lỗi (VD socket đã đóng)
+            Toast.makeText(this,
+                    "Không thể gửi yêu cầu chơi lại. " + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+
+            // Trở về menu (hoặc đóng Activity)
+            returnToMenu();
+        }
     }
+
 
     private void showResultDialog(String message) {
         ResultDialog dialog = ResultDialog.newInstance();
