@@ -3,8 +3,8 @@
   <component name="deploymentTargetSelector">
     <selectionStates>
       <SelectionState runConfigName="app">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-03-30T16:17:01.536703900Z">
+        <option name="selectionMode" value="DIALOG" />
+        <DropdownSelection timestamp="2025-04-01T02:27:31.759576400Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\asus\.android\avd\Pixel_9_API_27.avd" />
@@ -15,12 +15,12 @@
           <targets>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\asus\.android\avd\Copy_of_Pixel_9_API_27.avd" />
+                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\asus\.android\avd\Copy_of_Pixel_API_27.avd" />
               </handle>
             </Target>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\asus\.android\avd\Pixel_9_API_27.avd" />
+                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\asus\.android\avd\Pixel_API_27.avd" />
               </handle>
             </Target>
           </targets>

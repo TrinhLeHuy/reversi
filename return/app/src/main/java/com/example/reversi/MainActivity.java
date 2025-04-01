@@ -11,7 +11,7 @@ import com.example.myapplication.R;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String SERVER_IP = "3.27.125.16";
+    private static final String SERVER_IP = "192.168.66.17";
     private static final int SERVER_PORT = 5000;
 
 

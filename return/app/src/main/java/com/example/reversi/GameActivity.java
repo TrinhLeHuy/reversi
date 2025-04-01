@@ -142,9 +142,7 @@ public class GameActivity extends AppCompatActivity {
                 String winMsg = (parts.length >= 2) ? parts[1] : "Game Over";
                 showResultDialog("Kết thúc trò chơi: " + winMsg);
                 break;
-            case "PLAY_AGAIN_REQUEST":
-                showPlayAgainDialog();
-                break;
+
             case "NEW_GAME":
                 Toast.makeText(this, "Trò chơi mới bắt đầu!", Toast.LENGTH_SHORT).show();
                 break;
@@ -158,10 +156,6 @@ public class GameActivity extends AppCompatActivity {
                     playerId = Integer.parseInt(parts[1]);
                     roleText.setText("Bạn là Player " + playerId + (playerId == 1 ? " (Đen)" : " (Trắng)"));
                 }
-                break;
-            case "EXIT_TO_MENU":
-                Toast.makeText(this, "Đối thủ đã từ chối chơi lại. Trở về menu...", Toast.LENGTH_SHORT).show();
-                returnToMenu(); // Hàm xử lý quay về menu chính
                 break;
             default:
                 break;
@@ -291,23 +285,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void startGameAgain() {
-        // Kiểm tra cờ inGame
-        if (!inGame) {
-            Toast.makeText(this,
-                    "Không thể gửi PLAY_AGAIN. Phòng đã đóng hoặc đối thủ thoát!",
-                    Toast.LENGTH_SHORT).show();
-
-            // Trở về menu (hoặc đóng Activity)
-            returnToMenu();
-            return;
-        }
-
         try {
             // Gửi lệnh PLAY_AGAIN
             sendCommand("PLAY_AGAIN");
             Toast.makeText(this, "Yêu cầu chơi lại đã được gửi", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            // Nếu có lỗi (VD socket đã đóng)
             Toast.makeText(this,
                     "Không thể gửi yêu cầu chơi lại. " + e.getMessage(),
                     Toast.LENGTH_LONG).show();
@@ -317,34 +299,35 @@ public class GameActivity extends AppCompatActivity {
             returnToMenu();
         }
     }
-
-
     private void showResultDialog(String message) {
         ResultDialog dialog = ResultDialog.newInstance();
         dialog.setGameOverMessage(message);
         dialog.show(getSupportFragmentManager(), "ResultDialog");
     }
 
-    private void showPlayAgainDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Chơi lại?")
-                .setMessage("Đối thủ muốn chơi lại. Bạn có muốn không?")
-                .setPositiveButton("Có", (dialog, which) -> sendCommand("PLAY_AGAIN"))
-                .setNegativeButton("Không", (dialog, which) -> {
-                    sendCommand("EXIT");
-                    Intent intent = new Intent(GameActivity.this, MenuActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                })
-                .setCancelable(false)
-                .show();
+
+    public void returnToMenu() {
+        try {
+            sendCommand("RETURN_MENU");
+            Toast.makeText(this, "Yêu cầu đã được gửi", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Dừng luồng đọc nếu chưa dừng
+        stopReading = true;
+        if(readingThread != null && readingThread.isAlive()){
+            readingThread.interrupt();
+        }
+        SocketHandler.getInstance().disconnect();
+        returnToMenuRequest();
     }
-    private void returnToMenu() {
+    void returnToMenuRequest(){
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
         finish(); // Đóng màn hình hiện tại
     }
+
+
 
 
     @Override
